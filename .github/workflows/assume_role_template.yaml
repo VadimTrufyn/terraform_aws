@@ -1,0 +1,31 @@
+name: Template for assume role
+on:
+    push:
+        branches:
+            - oidc
+permissions:
+      id-token: write   
+      contents: read 
+jobs:
+    s3list:
+        runs-on: ubunru-lates
+        steps:
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1.7.0
+              with:
+                role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+                role-session-name: GitHub_to_AWS_via_FederatedOIDC
+                aws-region: eu-central-1
+                audience: sts.amazonaws.com
+
+            - id: install-aws-cli
+              uses: unfor19/install-aws-cli-action@v1
+              with:
+                version: 2                         
+                verbose: false                     
+                arch: amd64  
+
+            - name: Check
+              run: |
+                aws s3 ls
+                    
