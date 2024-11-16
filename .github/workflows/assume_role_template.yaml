@@ -8,7 +8,7 @@ permissions:
       contents: read 
 jobs:
     s3list:
-        runs-on: ubunru-lates
+        runs-on: ubuntu-lates
         steps:
             - name: Configure AWS credentials
               uses: aws-actions/configure-aws-credentials@v1.7.0
