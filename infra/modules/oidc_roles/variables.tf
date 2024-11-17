@@ -3,6 +3,12 @@ variable "region" {
   description = "AWS region"
 }
 
+variable "environment" {
+  type = string
+  description = "Environment name dev/prod/test"
+}
+
+
 variable "github_role_name" {
   type        = string
   description = "Role name for git worflows"

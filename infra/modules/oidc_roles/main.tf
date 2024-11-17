@@ -19,12 +19,15 @@ resource "aws_iam_role" "github_role" {
       ])
     })
   )
-  #TODO tags
-}
+  tags = merge(local.mandatory_tags, {
+    "Name" = var.github_role_name
+  })
+  }
+    
+
 
 resource "aws_iam_policy" "github_policy" {
   name = var.policy_name
-  #TODO ADD VAR HERE
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -35,11 +38,12 @@ resource "aws_iam_policy" "github_policy" {
       }
     ]
   })
-  #TODO tags
+  tags = merge(local.mandatory_tags, {
+    "Name" = var.policy_name
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "attachment" {
   role       = aws_iam_role.github_role.name
   policy_arn = aws_iam_policy.github_policy.arn
-  #TODO tags
 }

@@ -1,12 +1,14 @@
 locals {
-  policy_document = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
-      {
-        "Effect" : "Allow",
-        "Action" : ["s3:PutObject", "s3:GetObject"],
-        "Resource" : "arn:aws:s3:::dev-example-bucket/*"
-      }
-    ]
-  })
+  # Standard tag definitions
+  mandatory_tags = {
+    Environment     = var.environment
+    Service         = var.repository_name
+    Project         = var.github_org
+    ManagedBy       = "terraform"
+    DeployTimestamp = timestamp()
+    DeployTool      = "terraform-${var.environment}"
+  }
+
+  # Function to merge mandatory tags with additional resource-specific tags
+  get_tags = { for key, value in local.mandatory_tags : key => value if value != "" }
 }
