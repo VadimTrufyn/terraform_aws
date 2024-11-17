@@ -1,0 +1,18 @@
+region             = "my-region-1"
+github_role_name   = "gitHubRoleByTerraform"
+allow_all_branches = true
+github_org         = "MyOrg"
+repository_name    = "my-repo"
+policy_name        = "policy-name"
+policy_statement = [
+  {
+    action   = ["s3:ListAllMyBuckets"]
+    effect    = "Allow"
+    resource = ["*"]
+  },
+  {
+    action   = ["s3:GetObject", "s3:PutObject"]
+    effect    = "Allow"
+    resource = ["arn:aws:s3:::my-bucket/*"]
+  }
+]
