@@ -33,6 +33,7 @@ No modules.
 | <a name="input_github_org"></a> [github\_org](#input\_github\_org) | github org | `string` | n/a | yes |
 | <a name="input_github_role_name"></a> [github\_role\_name](#input\_github\_role\_name) | Role name for git worflows | `string` | n/a | yes |
 | <a name="input_policy_name"></a> [policy\_name](#input\_policy\_name) | Policy name | `string` | n/a | yes |
+| <a name="input_policy_statement"></a> [policy\_statement](#input\_policy\_statement) | Policy statement | <pre>list(object({<br/>    action   = list(string)<br/>    effect   = string<br/>    resource = list(string)<br/>  }))</pre> | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | AWS region | `string` | n/a | yes |
 | <a name="input_repository_name"></a> [repository\_name](#input\_repository\_name) | repository name | `string` | n/a | yes |
 
